@@ -1,0 +1,48 @@
+#Is <target> older than : <prerequisites> ? 
+#if So: execute command
+
+# Creating variable : var_name = str
+# Subsituting variable : $$(var_name)
+# see: Makefile3 from reference prj
+
+
+# from name.o : <prerequisites> command "g++ -o name.o -c name.cc" is omitted as it is an implicit rule
+# Executable dependencies is still needed as it's not an object file.
+# see: Makefile4 from reference prj
+
+# depend : generate dependencies for all .cc files and put them in a file called Makefile.deps.
+# -include makes sure that if file doesn't exist, it gets ignored.
+# this way, there is no need to compile the object file for every src.cc (l:26 l:28 l:30), as the text file generated
+# has exactly the same text - REMEMBER: [-]include works exactly as #include, meaning that what is written
+# inside the text file is copied in the same exact way in the Makefile
+# see: Makefile5
+
+# CXXFLAGS is g++'s variable for flag options
+
+CXXFLAGS = -Wall
+EXECUTABLE_DEPENDENCIES = entry_T.o app_functions.o main.o
+
+# linking happens here
+Executable : $(EXECUTABLE_DEPENDENCIES)
+	g++ -o Executable $(EXECUTABLE_DEPENDENCIES)
+
+# preprocessing and translating to bin obj_f
+main.o : main.cc entry_T.h app_functions.h
+
+app_functions.o : entry_T.h app_functions.h app_functions.cc
+
+entry_T.o : entry_T.h entry_T.cc
+
+
+# phony target : they're not file names
+
+.PHONY : clean cleanall depend
+
+depend:
+	g++ -MM *.cc >Makefile.deps
+
+clean :
+	rm *.o
+
+cleanall : 
+	rm Executable *.o

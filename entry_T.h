@@ -4,7 +4,6 @@
 #include <iostream>
 #include <unistd.h>
 
-
 // TODO: add auto formatting to tenant number and date
 
 // using global current_id, I can make it so that every entry/tenant/appt has a unique id, 
@@ -38,7 +37,6 @@ enum Month {
 
 struct Tenant {
     int tnt_ID = CURRENT_TNT_ID;
-
     char full_name[MAX_CHARACTERS];
     char number_info[MAX_CHARACTERS];
 };

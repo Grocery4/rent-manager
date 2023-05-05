@@ -4,8 +4,8 @@
 #include "app_functions.h"
 
 int main(){
-    Entry* first_entry = new Entry;
-    createEntryList(first_entry);
+    Entry* head_entry = new Entry;
+    createEntryList(head_entry);
 
     return 0;
 }

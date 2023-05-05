@@ -1,0 +1,3 @@
+app_functions.o: app_functions.cc entry_T.h app_functions.h
+entry_T.o: entry_T.cc entry_T.h
+main.o: main.cc entry_T.h app_functions.h

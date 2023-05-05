@@ -1,0 +1,27 @@
+#Is <target> older than : <prerequisites> ? 
+#if So: execute command
+
+# Creating variable : var_name = str
+# Subsituting variable : $$(var_name)
+
+EXECUTABLE_DEPENDENCIES = entry_T.o app_functions.o main.o
+
+Executable : entry_T.o app_functions.o main.o
+	# g++ -o Executable entry_T.o app_functions.o main.o
+	g++ -o Executable $(EXECUTABLE_DEPENDENCIES)
+
+main.o : main.cc entry_T.h app_functions.h
+	g++ -c main.cc
+
+app_functions.o : entry_T.h app_functions.h app_functions.cc
+	g++ -c app_functions.cc
+
+entry_T.o : entry_T.h entry_T.cc
+	g++ -c entry_T.cc
+
+
+# phony target : they're not file names
+.PHONY : clean
+
+clean :
+	rm *.o

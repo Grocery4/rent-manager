@@ -16,9 +16,9 @@ void initialize_tenant(Tenant tenant){
     tenant.tnt_ID = CURRENT_TNT_ID;
     CURRENT_TNT_ID++;
 
-// TODO: fix space in buffer problem -> to replicate: add a space in FULL NAME, it will skip right through
     std::cout << "Insert tenant info: " << std::endl;
 
+    std::cout << "TENANT ID: " << tenant.tnt_ID << std::endl;
     std::cout << "FULL NAME: "; std::cin.getline(tenant.full_name, MAX_CHARACTERS);
     std::cout << "CONTACT NUMBER: "; std::cin.getline(tenant.number_info, MAX_CHARACTERS);
 }
